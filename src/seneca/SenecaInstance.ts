@@ -1,0 +1,32 @@
+import { IReferenceable } from 'pip-services-commons-node';
+import { IReferences } from 'pip-services-commons-node';
+import { CompositeLogger } from 'pip-services-components-node';
+
+export class SenecaInstance implements IReferenceable {
+    private _logger: CompositeLogger = new CompositeLogger();
+    private _instance: any;
+
+    public constructor(instance?: any) {
+        this._instance = instance;
+    }
+
+    public setReferences(references: IReferences): void {
+        this._logger.setReferences(references);
+    }
+
+    public getInstance(): any {
+        // Initialize seneca instance
+        if (this._instance == null) {
+            this._instance = require('seneca')({ strict: { result: false } });
+            this._instance.error((err) => {
+                if (err) this._logger.error(null, err, err.message);
+            });
+        }
+
+        return this._instance;
+    }
+
+    public setInstance(seneca: any): void {
+        this._instance = seneca;
+    }
+}
