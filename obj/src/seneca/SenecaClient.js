@@ -36,7 +36,7 @@ class SenecaClient {
         this._logger.trace(correlationId, "Executing %s method", name);
         return this._counters.beginTiming(name + ".exec_time");
     }
-    isOpened() {
+    isOpen() {
         return this._opened;
     }
     getConnection(correlationId, callback) {
@@ -72,7 +72,7 @@ class SenecaClient {
         });
     }
     open(correlationId, callback) {
-        if (this.isOpened()) {
+        if (this.isOpen()) {
             if (callback)
                 callback();
             return;

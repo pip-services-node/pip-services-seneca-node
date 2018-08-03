@@ -61,7 +61,7 @@ export abstract class SenecaService implements IOpenable, IConfigurable, IRefere
         return this._counters.beginTiming(name + ".exec_time");
     }
 
-    public isOpened(): boolean {
+    public isOpen(): boolean {
         return this._opened;
     }
 
@@ -101,7 +101,7 @@ export abstract class SenecaService implements IOpenable, IConfigurable, IRefere
     }
 
     public open(correlationId: string, callback: (err?: any) => void): void {
-        if (this.isOpened()) {
+        if (this.isOpen()) {
             if (callback) callback(null);
             return;
         }

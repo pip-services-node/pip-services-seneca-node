@@ -24,7 +24,7 @@ export declare abstract class SenecaClient implements IOpenable, IConfigurable, 
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;
     protected instrument(correlationId: string, name: string): Timing;
-    isOpened(): boolean;
+    isOpen(): boolean;
     protected getConnection(correlationId: string, callback: (err: any, result: ConnectionParams) => void): void;
     open(correlationId: string, callback: (err?: any) => void): void;
     close(correlationId: string, callback?: (err?: any) => void): void;
