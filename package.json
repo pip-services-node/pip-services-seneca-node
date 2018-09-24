@@ -1,5 +1,5 @@
 {
-    "name": "pip-services-seneca-node",
+    "name": "pip-services-node",
     "version": "3.0.1",
     "author": "Conceptual Vision Consulting LLC",
     "description": "Seneca components for Pip.Services in Node.js",
@@ -25,7 +25,7 @@
     "noAnalyze": true,
     "repository": {
         "type": "git",
-        "url": "ssh://git@github.com:pip-services-node/pip-services-seneca-node.git"
+        "url": "ssh://git@github.com:pip-services-node/pip-services-node.git"
     },
     "license": "MIT",
     "engines": {

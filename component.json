@@ -1,5 +1,5 @@
 {
-    "name": "pip-services-seneca",
+    "name": "pip-services",
     "registry": "pipdevs",
     "version": "3.0.1",
     "build": "0"

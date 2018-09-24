@@ -44,7 +44,7 @@ you may need to install database servers:
 
 After your environment is ready you can check out source code from the Github repository:
 ```bash
-git clone git@github.com:pip-services-node/pip-services-seneca-node.git
+git clone git@github.com:pip-services-node/pip-services-node.git
 ```
 
 Then go to the project folder and install dependent modules:

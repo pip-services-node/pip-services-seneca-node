@@ -15,11 +15,11 @@ To use the commons you can either include dependency into your **package.json** 
 Or install it by npm:
 
 ```bash
-npm install pip-services-seneca-node
+npm install pip-services-node
 ```
 
 Source code can be checked out from github repository:
 
 ```bash
-git clone git@github.com:pip-services-node/pip-services-seneca-node.git
+git clone git@github.com:pip-services-node/pip-services-node.git
 ```
