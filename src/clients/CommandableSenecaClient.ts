@@ -1,3 +1,4 @@
+/** @module clients */
 import { SenecaClient } from './SenecaClient';
 
 /**

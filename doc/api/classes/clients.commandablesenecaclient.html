@@ -54,7 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="commandablesenecaclient.html">CommandableSenecaClient</a>
+					<a href="../modules/clients.html">clients</a>
+				</li>
+				<li>
+					<a href="clients.commandablesenecaclient.html">CommandableSenecaClient</a>
 				</li>
 			</ul>
 			<h1>Class CommandableSenecaClient</h1>
@@ -64,11 +67,62 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Abstract client that calls commandable Seneca service.</p>
+					</div>
+					<p>Commandable services are generated automatically for ICommandable objects.
+					Each command is exposed as Seneca action.</p>
+					<h3 id="configuration-parameters">Configuration parameters</h3>
+					<p>connection(s):
+						discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
+						protocol:              connection protocol: http or https
+						host:                  host name or IP address
+						port:                  port number
+						uri:                   resource URI or connection string with all parameters in it
+						options:
+						retries:               number of retries (default: 3)
+						connect_timeout:       connection timeout in milliseconds (default: 10 sec)
+					timeout:               invocation timeout in milliseconds (default: 10 sec)</p>
+					<h3 id="references">References</h3>
+					<ul>
+						<li><em>:logger:</em>:*:1.0         (optional) [[ILogger]] components to pass log messages</li>
+						<li><em>:counters:</em>:*:1.0         (optional) [[ICounters]] components to pass collected measurements</li>
+						<li><em>:discovery:</em>:*:1.0        (optional) IDiscovery services to resolve connection</li>
+					</ul>
+					<h3 id="example">Example</h3>
+					<p>class MyCommandableSenecaClient extends CommandableSenecaClient implements IMyClient {
+					...</p>
+					<p>   public getData(correlationId: string, id: string,
+					callback: (err: any, result: MyData) =&gt; void): void {</p>
+					<pre><code>   <span class="hljs-keyword">this</span>.callCommand(
+       <span class="hljs-string">"get_data"</span>,
+       correlationId,
+       { id: id },
+       <span class="hljs-function"><span class="hljs-params">(err, result)</span> =&gt;</span> {
+           callback(err, result);
+       }
+    );
+</code></pre><p>   }
+						...
+					}</p>
+					<p>let client = new MyCommandableSenecaClient();
+						client.configure(ConfigParams.fromTuples(
+						&quot;connection.protocol&quot;, &quot;http&quot;,
+						&quot;connection.host&quot;, &quot;localhost&quot;,
+						&quot;connection.port&quot;, 8080
+					));</p>
+					<p>client.getData(&quot;123&quot;, &quot;1&quot;, (err, result) =&gt; {
+						...
+					});</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="senecaclient.html" class="tsd-signature-type">SenecaClient</a>
+						<a href="clients.senecaclient.html" class="tsd-signature-type">SenecaClient</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">CommandableSenecaClient</span>
@@ -92,34 +146,33 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="commandablesenecaclient.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="clients.commandablesenecaclient.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private-protected">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_counters" class="tsd-kind-icon">_counters</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_dependencyresolver" class="tsd-kind-icon">_dependency<wbr>Resolver</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_logger" class="tsd-kind-icon">_logger</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_opened" class="tsd-kind-icon">_opened</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="commandablesenecaclient.html#_role" class="tsd-kind-icon">_role</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_schemas" class="tsd-kind-icon">_schemas</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#_seneca" class="tsd-kind-icon">_seneca</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_counters" class="tsd-kind-icon">_counters</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_dependencyresolver" class="tsd-kind-icon">_dependency<wbr>Resolver</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_logger" class="tsd-kind-icon">_logger</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_opened" class="tsd-kind-icon">_opened</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_schemas" class="tsd-kind-icon">_schemas</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#_seneca" class="tsd-kind-icon">_seneca</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#call" class="tsd-kind-icon">call</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="commandablesenecaclient.html#callcommand" class="tsd-kind-icon">call<wbr>Command</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="commandablesenecaclient.html#close" class="tsd-kind-icon">close</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="commandablesenecaclient.html#configure" class="tsd-kind-icon">configure</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#getconnection" class="tsd-kind-icon">get<wbr>Connection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="commandablesenecaclient.html#instrument" class="tsd-kind-icon">instrument</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="commandablesenecaclient.html#isopened" class="tsd-kind-icon">is<wbr>Opened</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="commandablesenecaclient.html#open" class="tsd-kind-icon">open</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="commandablesenecaclient.html#setreferences" class="tsd-kind-icon">set<wbr>References</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#call" class="tsd-kind-icon">call</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="clients.commandablesenecaclient.html#callcommand" class="tsd-kind-icon">call<wbr>Command</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="clients.commandablesenecaclient.html#close" class="tsd-kind-icon">close</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="clients.commandablesenecaclient.html#configure" class="tsd-kind-icon">configure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#instrument" class="tsd-kind-icon">instrument</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="clients.commandablesenecaclient.html#isopen" class="tsd-kind-icon">is<wbr>Open</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="clients.commandablesenecaclient.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="clients.commandablesenecaclient.html#resolveconnection" class="tsd-kind-icon">resolve<wbr>Connection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="clients.commandablesenecaclient.html#setreferences" class="tsd-kind-icon">set<wbr>References</a></li>
 							</ul>
 						</section>
 					</div>
@@ -131,36 +184,46 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Commandable<wbr>Seneca<wbr>Client<span class="tsd-signature-symbol">(</span>role<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="commandablesenecaclient.html" class="tsd-signature-type">CommandableSenecaClient</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Commandable<wbr>Seneca<wbr>Client<span class="tsd-signature-symbol">(</span>role<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="clients.commandablesenecaclient.html" class="tsd-signature-type">CommandableSenecaClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/CommandableSenecaClient.ts#L4">seneca/CommandableSenecaClient.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/CommandableSenecaClient.ts#L61">clients/CommandableSenecaClient.ts:61</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new instance of the client.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>role: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>a service role (name).</p>
+										</div>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="commandablesenecaclient.html" class="tsd-signature-type">CommandableSenecaClient</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="clients.commandablesenecaclient.html" class="tsd-signature-type">CommandableSenecaClient</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="_connectionresolver" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _connection<wbr>Resolver</h3>
 					<div class="tsd-signature tsd-kind-icon">_connection<wbr>Resolver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConnectionResolver</span><span class="tsd-signature-symbol"> =&nbsp;new ConnectionResolver()</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_connectionresolver">_connectionResolver</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_connectionresolver">_connectionResolver</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L35">seneca/SenecaClient.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L90">clients/SenecaClient.ts:90</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,9 +232,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _counters</h3>
 					<div class="tsd-signature tsd-kind-icon">_counters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CompositeCounters</span><span class="tsd-signature-symbol"> =&nbsp;new CompositeCounters()</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_counters">_counters</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_counters">_counters</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L37">seneca/SenecaClient.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L92">clients/SenecaClient.ts:92</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -180,9 +243,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _dependency<wbr>Resolver</h3>
 					<div class="tsd-signature tsd-kind-icon">_dependency<wbr>Resolver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DependencyResolver</span><span class="tsd-signature-symbol"> =&nbsp;new DependencyResolver(SenecaClient._defaultConfig)</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_dependencyresolver">_dependencyResolver</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_dependencyresolver">_dependencyResolver</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L34">seneca/SenecaClient.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L89">clients/SenecaClient.ts:89</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,9 +254,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _logger</h3>
 					<div class="tsd-signature tsd-kind-icon">_logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CompositeLogger</span><span class="tsd-signature-symbol"> =&nbsp;new CompositeLogger()</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_logger">_logger</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_logger">_logger</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L36">seneca/SenecaClient.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L91">clients/SenecaClient.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,19 +265,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _opened</h3>
 					<div class="tsd-signature tsd-kind-icon">_opened<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_opened">_opened</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_opened">_opened</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L31">seneca/SenecaClient.ts:31</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_role" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _role</h3>
-					<div class="tsd-signature tsd-kind-icon">_role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/CommandableSenecaClient.ts#L4">seneca/CommandableSenecaClient.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L86">clients/SenecaClient.ts:86</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -223,9 +276,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _schemas</h3>
 					<div class="tsd-signature tsd-kind-icon">_schemas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_schemas">_schemas</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_schemas">_schemas</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L32">seneca/SenecaClient.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L87">clients/SenecaClient.ts:87</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -242,9 +295,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _seneca</h3>
 					<div class="tsd-signature tsd-kind-icon">_seneca<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#_seneca">_seneca</a></p>
+						<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#_seneca">_seneca</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L30">seneca/SenecaClient.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L85">clients/SenecaClient.ts:85</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -260,27 +313,47 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#call">call</a></p>
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#call">call</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L156">seneca/SenecaClient.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L263">clients/SenecaClient.ts:263</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calls a remote method via HTTP/REST protocol.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>role: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a service role (service name)</p>
+									</div>
 								</li>
 								<li>
 									<h5>cmd: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a command name</p>
+									</div>
 								</li>
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) command parameters.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) callback function that receives result object or error.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -318,22 +391,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/CommandableSenecaClient.ts#L11">seneca/CommandableSenecaClient.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/CommandableSenecaClient.ts#L81">clients/CommandableSenecaClient.ts:81</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calls a remote method via Seneca commadable protocol.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>cmd: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a name of the command to call.</p>
+									</div>
 								</li>
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>params: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>command parameters.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives result or error.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -370,18 +460,29 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#close">close</a></p>
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#close">close</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L150">seneca/SenecaClient.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L248">clients/SenecaClient.ts:248</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Closes component and frees used resources.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives error or null no errors occured.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -415,15 +516,23 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#configure">configure</a></p>
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#configure">configure</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L39">seneca/SenecaClient.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L99">clients/SenecaClient.ts:99</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Configures component by passing configuration parameters.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <span class="tsd-signature-type">ConfigParams</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>configuration parameters to be set.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -431,26 +540,157 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="getconnection" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Connection</h3>
+					<a name="instrument" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> instrument</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Connection<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">instrument<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Timing</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#getconnection">getConnection</a></p>
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#instrument">instrument</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L65">seneca/SenecaClient.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L129">clients/SenecaClient.ts:129</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds instrumentation to log calls and measure call time.
+									It returns a Timing object that is used to end the time measurement.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
+								</li>
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a method name.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Timing</span></h4>
+							<p>Timing object to end the time measurement.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="isopen" class="tsd-anchor"></a>
+					<h3>is<wbr>Open</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Open<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#isopen">isOpen</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L139">clients/SenecaClient.ts:139</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if the component is opened.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if the component has been opened and false otherwise.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="open" class="tsd-anchor"></a>
+					<h3>open</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#open">open</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L192">clients/SenecaClient.ts:192</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Opens the component.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives error or null no errors occured.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> err: <span class="tsd-signature-type">any</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="resolveconnection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> resolve<wbr>Connection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Connection<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#resolveconnection">resolveConnection</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L149">clients/SenecaClient.ts:149</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resolves and validates connection to Seneca service.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(optional) transaction id to trace execution through call chain.</p>
+									</div>
+								</li>
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback function that receives connection parameters or error.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -478,96 +718,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="instrument" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> instrument</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">instrument<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Timing</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#instrument">instrument</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L56">seneca/SenecaClient.ts:56</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Timing</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="isopened" class="tsd-anchor"></a>
-					<h3>is<wbr>Opened</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Opened<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#isopened">isOpen</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L61">seneca/SenecaClient.ts:61</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="open" class="tsd-anchor"></a>
-					<h3>open</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#open">open</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L100">seneca/SenecaClient.ts:100</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>callback: <span class="tsd-signature-type">function</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5><span class="tsd-flag ts-flagOptional">Optional</span> err: <span class="tsd-signature-type">any</span></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="setreferences" class="tsd-anchor"></a>
 					<h3>set<wbr>References</h3>
@@ -577,15 +727,23 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="senecaclient.html">SenecaClient</a>.<a href="senecaclient.html#setreferences">setReferences</a></p>
+								<p>Inherited from <a href="clients.senecaclient.html">SenecaClient</a>.<a href="clients.senecaclient.html#setreferences">setReferences</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-node/blob/86b147f/src/services/SenecaClient.ts#L45">seneca/SenecaClient.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-seneca-node/blob/c0a19b2/src/clients/SenecaClient.ts#L110">clients/SenecaClient.ts:110</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets references to dependent components.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>references: <span class="tsd-signature-type">IReferences</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>references to locate the component dependencies.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -600,90 +758,87 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/build.html">build</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/clients.html">clients</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/container.html">container</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/services.html">services</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="commandablesenecaclient.html" class="tsd-kind-icon">Commandable<wbr>Seneca<wbr>Client</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="clients.commandablesenecaclient.html" class="tsd-kind-icon">Commandable<wbr>Seneca<wbr>Client</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="commandablesenecaclient.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="clients.commandablesenecaclient.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a>
+								<a href="clients.commandablesenecaclient.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_counters" class="tsd-kind-icon">_counters</a>
+								<a href="clients.commandablesenecaclient.html#_counters" class="tsd-kind-icon">_counters</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_dependencyresolver" class="tsd-kind-icon">_dependency<wbr>Resolver</a>
+								<a href="clients.commandablesenecaclient.html#_dependencyresolver" class="tsd-kind-icon">_dependency<wbr>Resolver</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_logger" class="tsd-kind-icon">_logger</a>
+								<a href="clients.commandablesenecaclient.html#_logger" class="tsd-kind-icon">_logger</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_opened" class="tsd-kind-icon">_opened</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="commandablesenecaclient.html#_role" class="tsd-kind-icon">_role</a>
+								<a href="clients.commandablesenecaclient.html#_opened" class="tsd-kind-icon">_opened</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_schemas" class="tsd-kind-icon">_schemas</a>
+								<a href="clients.commandablesenecaclient.html#_schemas" class="tsd-kind-icon">_schemas</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#_seneca" class="tsd-kind-icon">_seneca</a>
+								<a href="clients.commandablesenecaclient.html#_seneca" class="tsd-kind-icon">_seneca</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#call" class="tsd-kind-icon">call</a>
+								<a href="clients.commandablesenecaclient.html#call" class="tsd-kind-icon">call</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="commandablesenecaclient.html#callcommand" class="tsd-kind-icon">call<wbr>Command</a>
+								<a href="clients.commandablesenecaclient.html#callcommand" class="tsd-kind-icon">call<wbr>Command</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="commandablesenecaclient.html#close" class="tsd-kind-icon">close</a>
+								<a href="clients.commandablesenecaclient.html#close" class="tsd-kind-icon">close</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="commandablesenecaclient.html#configure" class="tsd-kind-icon">configure</a>
+								<a href="clients.commandablesenecaclient.html#configure" class="tsd-kind-icon">configure</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#getconnection" class="tsd-kind-icon">get<wbr>Connection</a>
+								<a href="clients.commandablesenecaclient.html#instrument" class="tsd-kind-icon">instrument</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="clients.commandablesenecaclient.html#isopen" class="tsd-kind-icon">is<wbr>Open</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="clients.commandablesenecaclient.html#open" class="tsd-kind-icon">open</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="commandablesenecaclient.html#instrument" class="tsd-kind-icon">instrument</a>
+								<a href="clients.commandablesenecaclient.html#resolveconnection" class="tsd-kind-icon">resolve<wbr>Connection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="commandablesenecaclient.html#isopened" class="tsd-kind-icon">is<wbr>Opened</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="commandablesenecaclient.html#open" class="tsd-kind-icon">open</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="commandablesenecaclient.html#setreferences" class="tsd-kind-icon">set<wbr>References</a>
+								<a href="clients.commandablesenecaclient.html#setreferences" class="tsd-kind-icon">set<wbr>References</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="commandablesenecaservice.html" class="tsd-kind-icon">Commandable<wbr>Seneca<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="senecaclient.html" class="tsd-kind-icon">Seneca<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="senecainstance.html" class="tsd-kind-icon">Seneca<wbr>Instance</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="senecaplugin.html" class="tsd-kind-icon">Seneca<wbr>Plugin</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="senecaservice.html" class="tsd-kind-icon">Seneca<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#_" class="tsd-kind-icon">_</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="clients.senecaclient.html" class="tsd-kind-icon">Seneca<wbr>Client</a>
 					</li>
 				</ul>
 			</nav>

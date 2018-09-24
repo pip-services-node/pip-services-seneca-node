@@ -1,3 +1,4 @@
+/** @module container */
 import { IReferences } from 'pip-services-commons-node';
 import { Descriptor } from 'pip-services-commons-node';
 import { Referencer } from 'pip-services-commons-node';

@@ -1,3 +1,5 @@
+/** @module clients */
+/** @hidden */
 let _ = require('lodash');
 
 import { IOpenable } from 'pip-services-commons-node';
