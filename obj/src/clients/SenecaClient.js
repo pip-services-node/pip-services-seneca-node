@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module clients */
+/** @hidden */
 let _ = require('lodash');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_commons_node_2 = require("pip-services-commons-node");
@@ -15,52 +17,53 @@ const pip_services_components_node_3 = require("pip-services-components-node");
  * ### Configuration parameters ###
  *
  * connection(s):
- *   discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
- *   protocol:              connection protocol: http or https
- *   host:                  host name or IP address
- *   port:                  port number
- *   uri:                   resource URI or connection string with all parameters in it
+ *   - discovery_key:         (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
+ *   - protocol:              connection protocol: http or https
+ *   - host:                  host name or IP address
+ *   - port:                  port number
+ *   - uri:                   resource URI or connection string with all parameters in it
+ *
  * options:
- *   retries:               number of retries (default: 3)
- *   connect_timeout:       connection timeout in milliseconds (default: 10 sec)
- *   timeout:               invocation timeout in milliseconds (default: 10 sec)
+ *   - retries:               number of retries (default: 3)
+ *   - connect_timeout:       connection timeout in milliseconds (default: 10 sec)
+ *   - timeout:               invocation timeout in milliseconds (default: 10 sec)
  *
  * ### References ###
  *
- * - *:logger:*:*:1.0         (optional) ILogger components to pass log messages
- * - *:counters:*:*:1.0         (optional) ICounters components to pass collected measurements
- * - *:discovery:*:*:1.0        (optional) IDiscovery services to resolve connection
+ * - <code>*:logger:*:*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/log.ilogger.html ILogger]] components to pass log messages
+ * - <code>*:counters:*:*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/count.icounters.html ICounters]] components to pass collected measurements
+ * - <code>*:discovery:*:*:1.0</code>        (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
  *
  * @see [[RestService]]
  * @see [[CommandableHttpService]]
  *
  * ### Example ###
  *
- * class MySenecaClient extends SenecaClient implements IMyClient {
- *    ...
+ *     class MySenecaClient extends SenecaClient implements IMyClient {
+ *        ...
  *
- *    public getData(correlationId: string, id: string,
- *        callback: (err: any, result: MyData) => void): void {
+ *        public getData(correlationId: string, id: string,
+ *            callback: (err: any, result: MyData) => void): void {
  *
- *        let timing = this.instrument(correlationId, 'myclient.get_data');
- *        this.call("mydata", "get_data" correlationId, { id: id }, (err, result) => {
- *            timing.endTiming();
- *            callback(err, result);
- *        });
- *    }
- *    ...
- * }
+ *            let timing = this.instrument(correlationId, 'myclient.get_data');
+ *            this.call("mydata", "get_data" correlationId, { id: id }, (err, result) => {
+ *                timing.endTiming();
+ *                callback(err, result);
+ *            });
+ *        }
+ *        ...
+ *     }
  *
- * let client = new MySenecaClient();
- * client.configure(ConfigParams.fromTuples(
- *     "connection.protocol", "http",
- *     "connection.host", "localhost",
- *     "connection.port", 8080
- * ));
+ *     let client = new MySenecaClient();
+ *     client.configure(ConfigParams.fromTuples(
+ *         "connection.protocol", "http",
+ *         "connection.host", "localhost",
+ *         "connection.port", 8080
+ *     ));
  *
- * client.getData("123", "1", (err, result) => {
- *   ...
- * });
+ *     client.getData("123", "1", (err, result) => {
+ *       ...
+ *    });
  */
 class SenecaClient {
     constructor() {

@@ -1,3 +1,4 @@
+/** @module container */
 import { IReferences } from 'pip-services-commons-node';
 /**
  * Seneca plugin that acts as a container for seneca services.

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module services */
 var SenecaEndpoint_1 = require("./SenecaEndpoint");
 exports.SenecaEndpoint = SenecaEndpoint_1.SenecaEndpoint;
 var SenecaService_1 = require("./SenecaService");
