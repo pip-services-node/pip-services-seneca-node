@@ -16,11 +16,10 @@ const pip_services_components_node_3 = require("pip-services-components-node");
  *
  * ### Configuration parameters ###
  *
- * dependencies:
+ * - dependencies:
  *   - endpoint:              override for HTTP Endpoint dependency
  *   - controller:            override for Controller dependency
- *
- * connection(s):
+ * - connection(s):
  *   - discovery_key:         (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
  *   - protocol:              connection protocol: http or https
  *   - host:                  host name or IP address
@@ -29,10 +28,10 @@ const pip_services_components_node_3 = require("pip-services-components-node");
  *
  * ### References ###
  *
- * - <code>*:logger:*:*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/log.ilogger.html ILogger]] components to pass log messages
- * - <code>*:counters:*:*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/count.icounters.html ICounters]] components to pass collected measurements
- * - <code>*:discovery:*:*:1.0</code>        (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
- * - <code>*:endpoint:seneca:*:1.0</code>        (optional) [[SenecaEndpoint]] reference
+ * - <code>\*:logger:\*:\*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/log.ilogger.html ILogger]] components to pass log messages
+ * - <code>\*:counters:\*:\*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/count.icounters.html ICounters]] components to pass collected measurements
+ * - <code>\*:discovery:\*:\*:1.0</code>        (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
+ * - <code>\*:endpoint:seneca:\*:1.0</code>        (optional) [[SenecaEndpoint]] reference
  *
  * @see [[SenecaClient]]
  *
